@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  gotest:
+    build: .
+    volumes:
+      - .:/app                # Монтируем текущую директорию внутрь контейнера
+      - ./test_logs:/logs     # Логи тестов сохраняем на хосте
+    command: >
+      /bin/sh -c "go test -v ./... | tee /logs/test_output.txt"
